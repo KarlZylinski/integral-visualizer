@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Integral something something</title>
+    <script type="text/javascript" src="integral-something-something.js"></script>
+    <meta charset="utf-8">
+</head>
+<body style="margin: 32px">
+    <h1>y = cos(x^2)</h1>
+
+    <canvas id="integral-canvas" width="1280" height="720" style="border: 1px solid black"></canvas>
+
+    <p>
+        Value of sum of all (signed) rectangle area (integral value): <span id="signed_value"></span>
+    </p>
+
+    <p>
+        <label for="num_partitions">Num partitions</label>
+        <input type="range" id="num_partitions" value="32" min="1" max="384">
+    </p>
+
+    <p>
+        <label for="use_lower">Use lower riemann sum</label>
+        <input type="checkbox" id="use_lower">
+    </p>
+
+    <p>
+        <label for="grid_size_x">Pixels per unit x</label>
+        <input type="range" id="grid_size_x" value="192" min="1" max="512">
+
+        <label for="grid_size_y">Pixels per unit y</label>
+        <input type="range" id="grid_size_y" value="192" min="1" max="512">
+    </p>
+
+
+    <p>
+        <label for="grid_size_x">Lower limit</label>
+        <input type="text" id="lower_limit" value="-1" min>
+
+        <label for="grid_size_y">Upper limit</label>
+        <input type="text" id="upper_limit" value="3" min="0.1" max="20">
+    </p>
+
+    <p>
+        <label for="x_step">Graph x step size</label>
+        <input type="text" id="x_step" value="0.01">
+    </p>
+</body>
+</html>
