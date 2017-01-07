@@ -35,8 +35,8 @@ window.onload = function() {
     var origin;
     var grid_color;
     var axis_color;
-
-    var x_step
+    var x_step;
+    
     function reload_parameters() {
         grid_size = vec(parseInt(document.getElementById("grid_size_x").value),
                         parseInt(document.getElementById("grid_size_y").value));
@@ -204,33 +204,28 @@ window.onload = function() {
         update_canvas()
     }
 
-    document.getElementById("num_partitions").addEventListener("mousemove", function() {
-        render();
-    });
+    function add_render_mouse_capture(element, func) {
+        var elem = document.querySelector(element)
+        
+        elem.addEventListener("mousedown", function() {
+            document.addEventListener("mousemove", func, true);
+            
+            function end_capture() {
+                document.removeEventListener("mousemove", func, true);
+                document.removeEventListener("mouseup", end_capture, true);
+            };
 
-    document.getElementById("use_lower").onchange = function() {
-        render();
-    };
+            document.addEventListener("mouseup", end_capture, true);
+        }, true);
+    }
 
-    document.getElementById("lower_limit").onchange = function() {
-        render();
-    };
-
-    document.getElementById("upper_limit").onchange = function() {
-        render();
-    };
-
-    document.getElementById("x_step").onchange = function() {
-        render();
-    };
-
-    document.getElementById("grid_size_x").addEventListener("mousemove", function() {
-        render();
-    });
-
-    document.getElementById("grid_size_y").addEventListener("mousemove", function() {
-        render();
-    });
+    add_render_mouse_capture("#num_partitions", render);
+    document.getElementById("use_lower").onchange = render;
+    document.getElementById("lower_limit").onchange  = render;
+    document.getElementById("upper_limit").onchange = render;
+    document.getElementById("x_step").onchange = render;
+    add_render_mouse_capture("#grid_size_x", render);
+    add_render_mouse_capture("#grid_size_y", render);
 
     render()
 }
